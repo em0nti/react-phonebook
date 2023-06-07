@@ -12,7 +12,7 @@ export default class App extends Component {
     filter: '',
   };
 
-  componentDidUpdate(_, prevState) { 
+  componentDidUpdate(_, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
@@ -25,8 +25,7 @@ export default class App extends Component {
       if (parsedContacts) {
         this.setState({ contacts: parsedContacts });
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   }
