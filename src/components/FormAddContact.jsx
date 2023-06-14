@@ -19,7 +19,7 @@ export class FormAddContact extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({ name: this.state.name, number: this.state.number });
+    this.props.onSubmit(this.state);
     this.setState({ ...INITIAL_STATE });
   };
 
