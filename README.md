@@ -1,3 +1,5 @@
+# My homework for React course in Goit
+
 # React homework template
 
 Этот проект был создан при помощи
