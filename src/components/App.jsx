@@ -6,6 +6,8 @@ import Contacts from './Contacts';
 import { nanoid } from 'nanoid';
 import Filter from './Filter';
 
+const normalize = text => text.toLowerCase();
+
 const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
@@ -28,9 +30,8 @@ const App = () => {
     if (contacts.length) localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const findContact = name => {
-    const normalizedName = name.toLowerCase();
-    return contacts.find(({ name }) => name.toLowerCase() === normalizedName);
+  const findContact = byName => {
+    return contacts.find(({ name }) => normalize(name) === normalize(byName));
   };
 
   const addContact = ({ name, number }) => {
@@ -50,11 +51,11 @@ const App = () => {
   };
 
   const getFilteredContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
+    const normalizedFilter = normalize(filter);
 
     return contacts.filter(
       contact =>
-        contact.name.toLowerCase().includes(normalizedFilter) ||
+        normalize(contact.name).includes(normalizedFilter) ||
         contact.number.includes(normalizedFilter)
     );
   };
