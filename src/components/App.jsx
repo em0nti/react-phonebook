@@ -9,25 +9,24 @@ import Filter from './Filter';
 const normalize = text => text.toLowerCase();
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(readContacts);
   const [filter, setFilter] = useState('');
 
-  //Read data from localStorage on mount phase
-  useEffect(() => {
+  //Read data from localStorage
+  function readContacts() {
     const contacts = localStorage.getItem('contacts');
     try {
       const parsedContacts = JSON.parse(contacts);
-      if (parsedContacts) {
-        setContacts(parsedContacts);
-      }
+      return parsedContacts || [];
     } catch (error) {
       console.log(error);
+      return [];
     }
-  }, []);
+  }
 
   //Save data to localStorage after contacts update
   useEffect(() => {
-    if (contacts.length) localStorage.setItem('contacts', JSON.stringify(contacts));
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const findContact = byName => {
