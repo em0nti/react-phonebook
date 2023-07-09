@@ -1,25 +1,27 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
 
-const FormAddContact = ({onSubmit}) => {
+const FormAddContact = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-   const handleInputChange = e => {
-      const { name, value } = e.target;
-      if (name === 'name') {
-        setName(value)
-      }
-      if (name === 'number') {
-        setNumber(value)
-      }
-      console.warn(`No field with name ${name}`);
-    };
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    if (name === 'name') {
+      setName(value);
+    }
+    if (name === 'number') {
+      setNumber(value);
+    }
+    console.warn(`No field with name ${name}`);
+  };
 
-    const handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({name, number});
+    dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
@@ -50,7 +52,7 @@ const FormAddContact = ({onSubmit}) => {
         <Form.Control
           type="tel"
           name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          pattern="\+\d{12}"
           required
           placeholder="Enter contact phone number"
           value={number}
@@ -66,10 +68,6 @@ const FormAddContact = ({onSubmit}) => {
       </Button>
     </Form>
   );
-}
-
-FormAddContact.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default FormAddContact;

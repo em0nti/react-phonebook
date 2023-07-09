@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { ListGroup } from 'react-bootstrap';
 import Contact from './Contact';
 
-const Contacts = ({ contacts, onDelete }) => {
+const Contacts = ({ contacts }) => {
   return (
         <ListGroup variant="flush">
-          {contacts.map(({id,...contactInfo}) => (
-            <Contact key={id} contact={contactInfo} onDelete={()=>onDelete(id)} />
+          {contacts.map(contact => (
+            <Contact key={contact.id} contact={contact} />
           ))}
         </ListGroup>
   );
@@ -19,7 +19,6 @@ Contacts.propTypes = {
       id: PropTypes.string.isRequired,
     })
   ),
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default Contacts
