@@ -36,7 +36,7 @@ const FormAddContact = () => {
         <Form.Control
           type="text"
           name="name"
-          pattern="^[a-zA-Z\u0400-\u04FF]+(([' -][a-zA-Z\u0400-\u04FF ])?[a-zA-Z\u0400-\u04FF]*)*$"
+          pattern="^[a-zA-Z\u0400-\u04FF]+(([ '-][a-zA-Z\u0400-\u04FF ])?[a-zA-Z\u0400-\u04FF]*)*$"
           required
           placeholder="Enter contact name"
           value={name}

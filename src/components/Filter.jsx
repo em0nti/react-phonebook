@@ -1,24 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
 
-const Filter = ({ value, onChange }) => {
+const Filter = () => {
+  const filter = useSelector(state=>state.filter)
+  const dispatch = useDispatch();
+
+  const handleChange = e => {
+    dispatch(setFilter(e.target.value.trim()));
+  };
+
   return (
     <Form.Group className="mb-3" controlId="filter">
       <Form.Label>Filter</Form.Label>
       <Form.Control
         type="text"
         name="filter"
-        value={value}
-        onChange={onChange}
+        value= {filter}
+        onChange={handleChange}
       />
     </Form.Group>
   );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default Filter;
