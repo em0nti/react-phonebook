@@ -10,13 +10,16 @@ const FormAddContact = () => {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    if (name === 'name') {
-      setName(value);
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+      default:
+        console.warn(`No field with name ${name}`);
     }
-    if (name === 'number') {
-      setNumber(value);
-    }
-    console.warn(`No field with name ${name}`);
   };
 
   const handleSubmit = e => {
