@@ -1,5 +1,7 @@
 # My homework for React course in Goit
 
+Studing Redux, Redux Toolkit
+
 # React homework template
 
 Этот проект был создан при помощи
