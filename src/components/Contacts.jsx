@@ -4,14 +4,15 @@ import Contact from './Contact';
 import { useSelector } from 'react-redux';
 import { getFilteredContacts } from 'utils/utils';
 import Filter from './Filter';
+import { getFilter, getItems } from 'redux/selectors';
 
 const Contacts = () => {
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
-  const filteredContacts = getFilteredContacts(contacts.items, filter);
+  const contacts = useSelector(getItems);
+  const filter = useSelector(getFilter);
+  const filteredContacts = getFilteredContacts(contacts, filter);
   return (
     <>
-      {contacts?.items.length !== 0 ? (
+      {contacts.length !== 0 ? (
         <>
           <Filter />
           <ListGroup variant="flush">
