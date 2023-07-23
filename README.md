@@ -1,4 +1,4 @@
-# My homework for React course in Goit
+# My homework #7 for React course in Goit
 
 Studing Redux, Redux Toolkit
 
