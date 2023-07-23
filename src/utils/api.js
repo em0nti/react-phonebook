@@ -7,35 +7,16 @@ import {
 const phonebook = axios.create(INIT_FETCH_CONFIG);
 
 export async function fetchContactsData() {
-  try {
-    const response = await phonebook.get(CONTACTS_URL);
-    return response.data;
-    
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  const response = await phonebook.get(CONTACTS_URL);
+  return response.data;
 }
 
 export async function addContactData(contactData) {
-  try {
-    const response = await phonebook.post(CONTACTS_URL, {
-      ...contactData,
-      createdAt: Date.now(),
-    });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  const response = await phonebook.post(CONTACTS_URL, contactData);
+  return response.data;
 }
 
 export async function deleteContactData(contactId) {
-  try {
-    const response = await phonebook.delete(`${CONTACTS_URL}/${contactId}`);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  const response = await phonebook.delete(`${CONTACTS_URL}/${contactId}`);
+  return response.data;
 }
