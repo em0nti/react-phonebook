@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CloseButton, ListGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContactThunk } from 'redux/actions';
 
-const Contact = ({ contact: { name, number, id } }) => {
+const Contact = ({ contact: { name, phone, id } }) => {
   const dispatch = useDispatch();
   return (
     <ListGroup.Item className="d-flex justify-content-between align-items-center">
       <div className="ms-2 me-auto">
         <div className="fw-bold">{name}</div>
-        {number}
+        {phone}
       </div>
-      <CloseButton onClick={() => dispatch(deleteContact(id))} />
+      <CloseButton onClick={() => dispatch(deleteContactThunk(id))} />
     </ListGroup.Item>
   );
 };
@@ -20,7 +20,7 @@ const Contact = ({ contact: { name, number, id } }) => {
 Contact.propTypes = {
   contact: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
     id: PropTypes.string,
   }),
 };

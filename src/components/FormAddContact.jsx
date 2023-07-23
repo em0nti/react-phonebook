@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getItems } from 'redux/selectors';
+import { addContactThunk } from 'redux/actions';
+import { selectItems } from 'redux/selectors';
 import { findContact } from 'utils/utils';
 
 const FormAddContact = () => {
-  const contacts = useSelector(getItems);
+  const contacts = useSelector(selectItems);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -36,7 +36,7 @@ const FormAddContact = () => {
       alert(`${trimedName} is already in contacts`);
       return;
     }
-    dispatch(addContact({ name: trimedName, number: number.trim() }));
+    dispatch(addContactThunk({ name: trimedName, phone: number.trim() }));
     setName('');
     setNumber('');
   };
@@ -51,6 +51,7 @@ const FormAddContact = () => {
         <Form.Control
           type="text"
           name="name"
+          pattern="[a-zA-Z\s'-]+"
           required
           placeholder="Enter contact name"
           value={name}
@@ -66,15 +67,14 @@ const FormAddContact = () => {
         <Form.Control
           type="tel"
           name="number"
-          pattern="\+\d{12}"
+          pattern="\d{3}-\d{3}-\d{4}"
           required
           placeholder="Enter contact phone number"
           value={number}
           onChange={handleInputChange}
         />
         <Form.Text className="text-muted">
-          Phone number must be digits and can contain spaces dashes, parentheses
-          and can start with +
+          Phone number must be digits in the format: 123-456-7890
         </Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit">
