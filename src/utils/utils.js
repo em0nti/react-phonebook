@@ -10,6 +10,6 @@ export const getFilteredContacts = (contacts, filter) => {
   return contacts.filter(
     contact =>
       normalize(contact.name).includes(normalizedFilter) ||
-      contact.number.includes(normalizedFilter)
+      contact.phone.includes(normalizedFilter)
   );
 };
