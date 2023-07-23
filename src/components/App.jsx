@@ -6,6 +6,7 @@ import Contacts from './Contacts';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllThunk } from 'redux/actions';
 import { selectError, selectIsLoading } from 'redux/selectors';
+import Filter from './Filter';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,14 +27,19 @@ const App = () => {
           <Alert variant="secondary">Request in progress...</Alert>
         )}
         {error && (
-          <Alert variant="danger" onClose={() => dispatch(fetchAllThunk())} dismissible>
+          <Alert
+            variant="danger"
+            onClose={() => dispatch(fetchAllThunk())}
+            dismissible
+          >
             <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-            <p>
-              {error}
-            </p>
+            <p>{error}</p>
           </Alert>
         )}
-        <Contacts />
+        <>
+          <Filter />
+          <Contacts />
+        </>
       </Section>
     </Container>
   );
