@@ -4,8 +4,6 @@
 	"private": true,
 	"homepage": "https://github.com/em0nti/react-phonebook",
 	"dependencies": {
-		"@mantine/core": "^7.1.7",
-		"@mantine/hooks": "^7.1.7",
 		"@reduxjs/toolkit": "^1.9.5",
 		"@testing-library/jest-dom": "^5.16.3",
 		"@testing-library/react": "^12.1.4",
@@ -44,10 +42,5 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	},
-	"devDependencies": {
-		"postcss": "^8.4.31",
-		"postcss-preset-mantine": "^1.9.0",
-		"postcss-simple-vars": "^7.0.1"
 	}
 }
